@@ -188,3 +188,5 @@ var eq                 = TinyTest.assertStrictEquals.bind(TinyTest);
 var tests              = TinyTest.run.bind(TinyTest);
 var failingTestsDiv;
 var passingTestsDiv;
+
+TinyTest.createHTML();
