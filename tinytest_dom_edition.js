@@ -189,4 +189,6 @@ var tests              = TinyTest.run.bind(TinyTest);
 var failingTestsDiv;
 var passingTestsDiv;
 
-TinyTest.createHTML();
+window.onload = function() {
+    TinyTest.createHTML();
+};
