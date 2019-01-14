@@ -159,10 +159,9 @@ var TinyTest = {
       <body>
         <h3 id="results">No tests run.  Please add some tests.</h3>
         <button type="button" onclick="TinyTest.reverseDisplayOrder()">Reverse Display Order</button>
-        <div id="container" style="
-        flex-direction:column;">
-          <div id="passingTestsDiv"></div>
-          <div id="failingTestsDiv"></div>
+        <div id="container" style=" flex-direction:column;">
+            <div id="failingTestsDiv"></div>  
+            <div id="passingTestsDiv"></div>
         </div>
       </body>
     </html>`
