@@ -47,8 +47,6 @@
  */
 var TinyTest = {
     run: function(tests) {
-    //add html to test file
-    TinyTest.createHTML();
     setTimeout(function() {
       // Give document a chance to complete
       if (window.document && document.body) {
