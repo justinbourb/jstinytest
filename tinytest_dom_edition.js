@@ -67,7 +67,7 @@ var TinyTest = {
                 passingTestCount++;
                 console.log('Test passed:', testName);
                 //prints passing test to DOM
-                passingTestsDiv.innerHTML+='<ul>'+'Test passed: '+ passingTestCount + ')' + testName+'</ul>';
+                passingTestsDiv.innerHTML+='<ul>'+'Test passed: '+ passingTestCount + ') ' + testName+'</ul>';
 
               //if testAction throws an error (test fails)
             } catch (e) {
