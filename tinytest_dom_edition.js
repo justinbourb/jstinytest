@@ -48,6 +48,7 @@
 var TinyTest = {
     run: function(tests) {
     setTimeout(function() {
+      TinyTest.createHTML();
       // Give document a chance to complete
       if (window.document && document.body) {
         // define variables
@@ -178,7 +179,3 @@ var eq                 = TinyTest.assertStrictEquals.bind(TinyTest);
 var tests              = TinyTest.run.bind(TinyTest);
 var failingTestsDiv;
 var passingTestsDiv;
-
-window.onload = function() {
-    TinyTest.createHTML();
-};
