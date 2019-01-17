@@ -81,7 +81,7 @@ var TinyTest = {
                 failingTestCount;
 
                 //change background color as needed
-                if (failures === 0){
+                if (failingTestCount === 0){
                    passingTestsDiv.style.backgroundColor = '#07a507';
                    failingTestsDiv.style.display = 'none';
                    document.getElementById('reverseButton').style.display = 'none';
@@ -90,7 +90,7 @@ var TinyTest = {
                    failingTestsDiv.style.color = 'rgb(255, 239, 239)';
                    failingTestsDiv.style.fontSize = '1em';
                    failingTestsDiv.style.border = '2px solid #ef9999';
-                  if (passing === 0) {
+                  if (passingTestCount === 0) {
                     passingTestsDiv.style.display = 'none'; 
                     document.getElementById('reverseButton').style.display = 'none';
                   } else {
