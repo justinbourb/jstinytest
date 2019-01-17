@@ -47,53 +47,62 @@
  */
 var TinyTest = {
     run: function(tests) {
-    setTimeout(function() {
-      TinyTest.createHTML();
-      // Give document a chance to complete
-      if (window.document && document.body) {
-        // define variables
-        failingTestsDiv = document.getElementById('failingTestsDiv');
-        passingTestsDiv = document.getElementById('passingTestsDiv');
-        var failingTestCount = 0;
-        var passingTestCount = 0;
-        //run tests and print results
-        for (var testName in tests) {
-            //testAction calls individual tests in html file provided by user
-            var testAction = tests[testName];
-            try {
-                //applies this = TinyTest
-                testAction.apply(this);
-                passingTestCount++;
-                console.log('Test passed:', testName);
-                //prints passing test to DOM
-                passingTestsDiv.innerHTML+='<ul>'+'Test passed: '+ passingTestCount + ') ' + testName+'</ul>';
+        setTimeout(function() {
+            TinyTest.createHTML();
+            // Give document a chance to complete
+            if (window.document && document.body) {
+                // define variables
+                failingTestsDiv = document.getElementById('failingTestsDiv');
+                passingTestsDiv = document.getElementById('passingTestsDiv');
+                var failingTestCount = 0;
+                var passingTestCount = 0;
+                //run tests and print results
+                for (var testName in tests) {
+                    //testAction calls individual tests in html file provided by user
+                    var testAction = tests[testName];
+                    try {
+                        //applies this = TinyTest
+                        testAction.apply(this);
+                        passingTestCount++;
+                        console.log('Test passed:', testName);
+                        //prints passing test to DOM
+                        passingTestsDiv.innerHTML += '<ul>' + 'Test passed: ' + passingTestCount + ') ' + testName + '</ul>';
+                    //if testAction throws an error (test fails)
+                    } catch (e) {
+                        failingTestCount++;
+                        console.error(e.stack);
+                        //formats Test and Error onto their own lines and prints it in the DOM 
+                        failingTestsDiv.innerHTML += '<ul style="list-style: none;"> Test failed: ' + failingTestCount + ') ' + testName + '<li>' + e.stack + '</li>' + '</ul>';
+                    }
+                }
+                //print total passing and total failues to top of screen (h3 element)
+                document.getElementById('results').innerHTML='Passing Tests: '+
+                passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
+                failingTestCount;
 
-              //if testAction throws an error (test fails)
-            } catch (e) {
-                failingTestCount++;
-                console.error(e.stack);
-                //formats Test and Error onto their own lines and prints it in the DOM 
-                failingTestsDiv.innerHTML+= '<ul style="list-style: none;"> Test failed: '+ failingTestCount + ') ' + testName + '<li>'+e.stack+'</li>' + '</ul>';
+                //change background color as needed
+                if (failures === 0){
+                   passingTestsDiv.style.backgroundColor = '#07a507';
+                   failingTestsDiv.style.display = 'none';
+                   document.getElementById('reverseButton').style.display = 'none';
+                 } else {
+                   failingTestsDiv.style.background = 'rgb(121, 0, 0)';
+                   failingTestsDiv.style.color = 'rgb(255, 239, 239)';
+                   failingTestsDiv.style.fontSize = '1em';
+                   failingTestsDiv.style.border = '2px solid #ef9999';
+                  if (passing === 0) {
+                    passingTestsDiv.style.display = 'none'; 
+                    document.getElementById('reverseButton').style.display = 'none';
+                  } else {
+                    passingTestsDiv.style.color = '#07a507';
+                  }
+                } 
             }
-        }
-        //print total passing and total failues to top of screen (h3 element)
-        document.getElementById('results').innerHTML='Passing Tests: '+
-        passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
-        failingTestCount;
-
-        //change background color as needed
-        if (passingTestCount === 0) {
-          passingTestsDiv.style.backgroundColor = '#99ff99';
-        } else {
-          failingTestsDiv.style.backgroundColor = '#ff9999';
-        }
-      }
-    }, 0);
+        }, 0);
     },
 
     fail: function(msg) {
         throw new Error('fail(): ' + msg);
-
     },
 
     assert: function(value, msg) {
@@ -113,6 +122,7 @@ var TinyTest = {
             throw new Error('assertStrictEquals() "' + expected + '" !== "' + actual + '"');
         }
     },
+    
     createHTML: function() {
       /*HTML template for whatever html file the end user supplies
       *this is useful so the end user just needs to add their Tests
@@ -121,39 +131,47 @@ var TinyTest = {
       var htmlElement = document.getElementsByTagName('HTML')[0];
       var testFileHTML = `
         <style>
-        #container {
-          width: 100%;
-          margin: 0;
-          padding: 0;
-          display:flex;
-        }
-        button, h3 {
-          display:inline-block;
-        }
-        button {
-          margin-left:2em;
-        }
-        #passingTestsDiv {
-          border: 2px solid green;
-          position: relative;
-          word-wrap:break-word;
-          display: flex;
-          flex-direction: column;
-        }
-        #failingTestsDiv {
-            border: 2px solid red;
-            position: relative;
-            word-wrap:break-word;
-            display: flex;
-            flex-direction: column;
-         }
-
+            #container{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                display:flex;
+            }
+            body{
+                background: black;
+            }
+            button, h3{
+                display:inline-block;
+            }
+            button{
+                margin-left:2em;
+            }
+            #passingTestsDiv {
+                border: 2px solid green;
+                position: relative;
+                word-wrap:break-word;
+                display: flex;
+                flex-direction: column;
+                font-family: arial;
+            }
+            #results{
+                color: white;
+            }
+            #failingTestsDiv {
+                border: 2px solid red;
+                position: relative;
+                word-wrap:break-word;
+                display: flex;
+                flex-direction: column;
+                font-family: arial;
+            }
         </style>
         <body>
             <h3 id="results">No tests run.  Please add some tests.</h3>
-            <button type="button" onclick="TinyTest.reverseDisplayOrder()">Reverse Display Order</button>
-            <div id="container" style=" flex-direction:column;">
-                <div id="failingTestsDiv"></div>  
+            <button type="button" id="reverseButton" onclick="TinyTest.reverseDisplayOrder()">Reverse Display Order</button>
+            <div id="container" style="flex-direction:column;">
+                <div id="failingTestsDiv"></div>
+                <br>
                 <div id="passingTestsDiv"></div>
             </div>
         </body>
