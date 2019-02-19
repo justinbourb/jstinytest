@@ -1,7 +1,7 @@
 tinytest_dom_edition JavaScript unit testing library
 =======================================
 
-Now featuring a dark theme.
+Now featuring a dark theme & synchronous test execution via the await command.
 
 This is an in-browser JavaScript library I've been using for years. It's so small and simple that it never occurred to me to open source it until I saw all the overly complicated alternatives that are out there.
 
@@ -32,6 +32,15 @@ Create a test page called `adder-test.html` (you can name it anything). This inc
 <script src="adder.js"></script>
 <script>
  tests({
+  
+  'synchronous test example': async function() {
+    await new Promise(resolve => {
+        setTimeout(function() { 
+          resolve('resolved');
+          console.log('waited 4 seconds for this test to finish');
+        }, 4000);
+      })
+  },
 
    'adds numbers': function() {
      eq(6, add(2, 4));
