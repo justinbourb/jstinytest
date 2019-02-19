@@ -47,7 +47,7 @@
  */
 var TinyTest = {
     run: function(tests) {
-        setTimeout(function() {
+        setTimeout(async function() {
             TinyTest.createHTML();
             // Give document a chance to complete
             if (window.document && document.body) {
@@ -57,24 +57,26 @@ var TinyTest = {
                 var failingTestCount = 0;
                 var passingTestCount = 0;
                 //run tests and print results
-                for (var testName in tests) {
-                    //testAction calls individual tests in html file provided by user
-                    var testAction = tests[testName];
-                    try {
-                        //applies this = TinyTest
-                        testAction.apply(this);
-                        passingTestCount++;
-                        console.log('Test passed:', testName);
-                        //prints passing test to DOM
-                        passingTestsDiv.innerHTML += '<ul>' + 'Test passed: ' + passingTestCount + ') ' + testName + '</ul>';
-                    //if testAction throws an error (test fails)
-                    } catch (e) {
-                        failingTestCount++;
-                        console.error(e.stack);
-                        //formats Test and Error onto their own lines and prints it in the DOM 
-                        failingTestsDiv.innerHTML += '<ul style="list-style: none;"> Test failed: ' + failingTestCount + ') ' + testName + '<li>' + e.stack + '</li>' + '</ul>';
+                await (async function () {
+                    for (var testName in tests) {
+                        //testAction calls individual tests in html file provided by user
+                        var testAction = tests[testName];
+                        try {
+                            //applies this = TinyTest
+                            await testAction.apply(this);
+                            passingTestCount++;
+                            console.log('Test passed:', testName);
+                            //prints passing test to DOM
+                            passingTestsDiv.innerHTML += '<ul>' + 'Test passed: ' + passingTestCount + ') ' + testName + '</ul>';
+                        //if testAction throws an error (test fails)
+                        } catch (e) {
+                            failingTestCount++;
+                            console.error(e.stack);
+                            //formats Test and Error onto their own lines and prints it in the DOM 
+                            failingTestsDiv.innerHTML += '<ul style="list-style: none;"> Test failed: ' + failingTestCount + ') ' + testName + '<li>' + e.stack + '</li>' + '</ul>';
+                        }
                     }
-                }
+                }})()
                 //print total passing and total failues to top of screen (h3 element)
                 document.getElementById('results').innerHTML='Passing Tests: '+
                 passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
