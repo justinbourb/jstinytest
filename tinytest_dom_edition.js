@@ -76,7 +76,7 @@ var TinyTest = {
                             failingTestsDiv.innerHTML += '<ul style="list-style: none;"> Test failed: ' + failingTestCount + ') ' + testName + '<li>' + e.stack + '</li>' + '</ul>';
                         }
                     }
-                }})()
+                })()
                 //print total passing and total failues to top of screen (h3 element)
                 document.getElementById('results').innerHTML='Passing Tests: '+
                 passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
