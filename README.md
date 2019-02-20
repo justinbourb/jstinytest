@@ -37,9 +37,11 @@ Create a test page called `adder-test.html` (you can name it anything). This inc
     await new Promise(resolve => {
         setTimeout(function() { 
           resolve('resolved');
-          console.log('waited 4 seconds for this test to finish');
         }, 4000);
       })
+    console.log('waited 4 seconds for this test to finish');
+    //eq() should be outside the setTimeout/Promise
+    eq(6, add(2, 4));
   },
 
    'adds numbers': function() {
