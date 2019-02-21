@@ -76,29 +76,29 @@ var TinyTest = {
                             failingTestsDiv.innerHTML += '<ul style="list-style: none;"> Test failed: ' + failingTestCount + ') ' + testName + '<li>' + e.stack + '</li>' + '</ul>';
                         }
                     }
-                })()
-                //print total passing and total failues to top of screen (h3 element)
-                document.getElementById('results').innerHTML='Passing Tests: '+
-                passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
-                failingTestCount;
+                    //print total passing and total failues to top of screen (h3 element)
+                    document.getElementById('results').innerHTML='Passing Tests: '+
+                    passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
+                    failingTestCount;
 
-                //change background color as needed
-                if (failingTestCount === 0){
-                   passingTestsDiv.style.backgroundColor = '#07a507';
-                   failingTestsDiv.style.display = 'none';
-                   document.getElementById('reverseButton').style.display = 'none';
-                 } else {
-                   failingTestsDiv.style.background = 'rgb(121, 0, 0)';
-                   failingTestsDiv.style.color = 'rgb(255, 239, 239)';
-                   failingTestsDiv.style.fontSize = '1em';
-                   failingTestsDiv.style.border = '2px solid #ef9999';
-                  if (passingTestCount === 0) {
-                    passingTestsDiv.style.display = 'none'; 
-                    document.getElementById('reverseButton').style.display = 'none';
-                  } else {
-                    passingTestsDiv.style.color = '#07a507';
-                  }
-                } 
+                    //change background color as needed
+                    if (failingTestCount === 0){
+                       passingTestsDiv.style.backgroundColor = '#07a507';
+                       failingTestsDiv.style.display = 'none';
+                       document.getElementById('reverseButton').style.display = 'none';
+                     } else {
+                       failingTestsDiv.style.background = 'rgb(121, 0, 0)';
+                       failingTestsDiv.style.color = 'rgb(255, 239, 239)';
+                       failingTestsDiv.style.fontSize = '1em';
+                       failingTestsDiv.style.border = '2px solid #ef9999';
+                      if (passingTestCount === 0) {
+                        passingTestsDiv.style.display = 'none'; 
+                        document.getElementById('reverseButton').style.display = 'none';
+                      } else {
+                        passingTestsDiv.style.color = '#07a507';
+                      }
+                    } 
+                })()
             }
         }, 0);
     },
