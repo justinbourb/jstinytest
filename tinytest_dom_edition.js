@@ -79,7 +79,7 @@ var TinyTest = {
                     //print total passing and total failues to top of screen (h3 element)
                     document.getElementById('results').innerHTML='Passing Tests: '+
                     passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
-                    failingTestCount;
+                    failingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp additional tests running... please wait...';;
 
                     //change background color as needed
                     if (failingTestCount === 0){
@@ -99,6 +99,9 @@ var TinyTest = {
                       }
                     } 
                 })()
+                document.getElementById('results').innerHTML = 'Passing Tests: ' +
+                passing + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
+                failures + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tests complete.';
             }
         }, 0);
     },
