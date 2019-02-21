@@ -100,8 +100,8 @@ var TinyTest = {
                     } 
                 })()
                 document.getElementById('results').innerHTML = 'Passing Tests: ' +
-                passing + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
-                failures + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tests complete.';
+                passingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp&nbsp&nbsp Failing Tests: ' +
+                failingTestCount + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tests complete.';
             }
         }, 0);
     },
