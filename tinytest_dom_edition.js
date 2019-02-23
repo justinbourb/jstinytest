@@ -83,6 +83,7 @@ var TinyTest = {
                         //change background color as needed
                         if (failingTestCount === 0){
                            passingTestsDiv.style.backgroundColor = '#07a507';
+                           passingTestsDiv.style.color = 'black';
                            failingTestsDiv.style.display = 'none';
                            document.getElementById('reverseButton').style.display = 'none';
                          } else {
@@ -90,12 +91,15 @@ var TinyTest = {
                            failingTestsDiv.style.color = 'rgb(255, 239, 239)';
                            failingTestsDiv.style.fontSize = '1em';
                            failingTestsDiv.style.border = '2px solid #ef9999';
+                           failingTestsDiv.style.display = 'flex';
+                           passingTestsDiv.style.display = 'flex';
+                           passingTestsDiv.style.color = '#07a507';
+                           passingTestsDiv.style.backgroundColor = 'black';
                           if (passingTestCount === 0) {
                             passingTestsDiv.style.display = 'none'; 
                             document.getElementById('reverseButton').style.display = 'none';
-                          } else {
-                            passingTestsDiv.style.color = '#07a507';
                           }
+                        }
                         }
                     } 
                 })()
