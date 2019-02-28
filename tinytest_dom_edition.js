@@ -95,10 +95,11 @@ var TinyTest = {
                            passingTestsDiv.style.display = 'flex';
                            passingTestsDiv.style.color = '#07a507';
                            passingTestsDiv.style.backgroundColor = 'black';
-                              if (passingTestCount === 0) {
-                                passingTestsDiv.style.display = 'none'; 
-                                document.getElementById('reverseButton').style.display = 'none';
-                              }
+                           document.getElementById('reverseButton').style.display = 'inline-block';
+                           if (passingTestCount === 0) {
+                            passingTestsDiv.style.display = 'none'; 
+                            document.getElementById('reverseButton').style.display = 'none';
+                          }
                         }
                     } 
                 })()
