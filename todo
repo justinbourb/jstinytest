@@ -1,0 +1,18 @@
+10-10-2019
+Add a categories functionality to the input / output of tiny test (similar to below).  When testing different aspects of an app,
+it would be nice to have a way to group them up.
+
+Function A tests:
+1)
+2)
+3)
+4)
+
+Function B tests:
+1)
+2)
+3)
+
+Function C tests:
+1)
+2)
