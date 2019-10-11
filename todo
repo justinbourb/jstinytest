@@ -16,3 +16,35 @@ Function B tests:
 Function C tests:
 1)
 2)
+
+10-11-2019
+Some thoughts on the matter.
+// this loops through all of the tests provided to js_tiny_test
+// in order to find a value === 'category', it's key and posistion
+// allows users to define categories in their test declarations in order 
+// to enable grouping by tests in formatting output of js_tiny_test
+
+//usage (within tests({})) 'array-like tests': 'category',
+tinytest.findcategories()
+for (let i = 0; i < Object.entries(tests).length; i++) {
+	if (Object.entries(tests)[i][1] === 'category') {
+        console.log(Object.entries(tests)[i][0] + ' is in posistion ' + i);
+    }
+}
+                                                 
+//remove these entries after finding them to prevent test action.apply errors
+Option 1: group all tests together in one tests({}) object (less organized)
+1: run find categories
+  returns array of indexies of Object.entries(tests) which are categories
+  called categoryArray[]
+2: createHTML() is based on if (categoryArray[].length >0)
+  a: if true => create additional HTML categories 
+    1a: one pass and one fail for each category
+    1b: a header with the category name
+  b: should this be an alternate function?  Too much duplication if separate?
+3: a collapse/expand button for each category
+4: remove categoryArray entries from tests object to prevent test action.apply errors
+
+Option 2: use multiple tests objects, one per category (more organized)
+  1: recreate steps 2-4 from above based on category provided as first agruement in each
+      tests object.  Need to adjust logic for this approach.
